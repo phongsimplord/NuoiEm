@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nuôi Em Phong — Thắp Sáng Ước Mơ (Clone)</title>
+  <meta name="description" content="Clone demo: Trang giới thiệu dự án Nuôi Em Phong.">
+  <style>
+    :root{--accent:#e94e77;--muted:#666;--bg:#f7f7f9;--card:#fff}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#222; background:var(--bg)}
+    header{background:linear-gradient(90deg, #fff 0%, #fff 100%); box-shadow:0 1px 0 rgba(0,0,0,0.04)}
+    .container{max-width:1000px; margin:0 auto; padding:28px}
+
+    /* nav */
+    .nav{display:flex; align-items:center; justify-content:space-between}
+    .logo{font-weight:700; color:var(--accent); font-size:20px}
+    .nav-links{display:flex; gap:18px; align-items:center}
+    .nav-links a{color:var(--muted); text-decoration:none}
+    .btn-login{background:transparent; border:1px solid #eee; padding:8px 12px; border-radius:8px}
+
+    /* hero */
+    .hero{display:grid; grid-template-columns:1fr 360px; gap:28px; align-items:center; padding:36px 0}
+    .hero h1{font-size:44px; margin:0 0 10px}
+    .hero p{color:var(--muted); margin:0 0 18px}
+    .cta{display:flex; gap:12px}
+    .btn{background:var(--accent); color:#fff; border:0; padding:12px 18px; border-radius:10px; cursor:pointer}
+    .btn.ghost{background:transparent; color:var(--accent); border:1px solid rgba(233,78,119,0.15)}
+
+    /* campaign card */
+    .card{background:var(--card); border-radius:12px; padding:18px; box-shadow:0 6px 20px rgba(15,15,15,0.03)}
+    .campaign{margin-top:12px}
+
+    /* packages */
+    .packages{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:28px 0}
+    .pkg{background:linear-gradient(180deg,#fff,#fff); border-radius:12px; padding:18px; border:1px solid rgba(0,0,0,0.03)}
+    .pkg h3{margin:0 0 8px}
+    .price{font-size:18px; color:var(--accent); font-weight:700}
+    .pkg ul{margin:12px 0 0; padding-left:18px; color:var(--muted)}
+
+    /* faq */
+    .faq h2{margin-top:30px}
+    .accordion{margin-top:12px}
+    .acc-item{background:var(--card); border-radius:10px; margin-bottom:8px; padding:12px; border:1px solid rgba(0,0,0,0.04)}
+    .acc-q{display:flex; justify-content:space-between; cursor:pointer; gap:12px}
+    .acc-a{margin-top:10px; color:var(--muted); display:none}
+
+    /* footer */
+    footer{padding:26px 0; text-align:center; color:var(--muted); font-size:14px}
+
+    /* chat bubble */
+    .assistant{position:fixed; right:20px; bottom:20px; background:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(0,0,0,0.12); overflow:hidden; width:320px}
+    .assistant .head{background:var(--accent); color:#fff; padding:12px; display:flex; justify-content:space-between; align-items:center}
+    .assistant .body{padding:12px}
+    .assistant .actions{display:flex; gap:8px}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .assistant{width:92%; left:4%; right:4%}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Nuôi Em Phong</div>
+      <nav class="nav-links">
+        <a href="#gioithieu">Giới thiệu</a>
+        <a href="#hoatdong">Hoạt động</a>
+        <a href="#quy">Gây quỹ</a>
+        <a href="#minhbach">Minh bạch</a>
+        <button class="btn-login">Đăng nhập</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="gioithieu">
+      <div>
+        <div style="color:var(--accent); font-weight:700;">Chiến dịch: Cứu trợ khẩn cấp trẻ em vùng lũ</div>
+        <h1>Nuôi Em Phong.<br><small style="font-weight:600;color:#333;">Thắp Sáng Ước Mơ Đến Trường.</small></h1>
+        <p>Chỉ với <strong>8.500đ</strong> mỗi ngày, bạn có thể mang lại bữa cơm có thịt, manh áo ấm và cơ hội học tập cho trẻ em nghèo tại vùng cao và vùng lũ.</p>
+        <div class="cta">
+          <button class="btn" id="btnAdopt">Nhận nuôi ngay</button>
+          <button class="btn ghost" id="btnLearn">Tìm hiểu thêm</button>
+        </div>
+        <p style="margin-top:12px;color:var(--muted)">Mọi khoản đóng góp đều được sao kê minh bạch.</p>
+      </div>
+
+      <aside class="card campaign">
+        <h3 style="margin:0">Chiến dịch: Cứu trợ khẩn cấp</h3>
+        <p style="color:var(--muted)">Hỗ trợ ngay những em nhỏ bị ảnh hưởng bởi lũ lụt. Cập nhật và ảnh thực tế hàng tuần.</p>
+        <div style="display:flex; gap:10px; margin-top:12px">
+          <img src="/qrcode.png" alt="campaign" style="width:300px;object-fit:cover;border-radius:8px">
+        </div>
+      </aside>
+    </section>
+
+    <section id="quy">
+      <h2>Chọn gói đồng hành</h2>
+      <p style="color:var(--muted)">Hãy chọn mức đóng góp phù hợp với khả năng của bạn để cùng chung tay giúp đỡ các em.</p>
+
+      <div class="packages">
+        <div class="pkg">
+          <h3>Gói Dinh Dưỡng</h3>
+          <div class="price">200.000đ / tháng</div>
+          <p>Đem lại 20 bữa trưa có thịt</p>
+          <ul>
+            <li>Cung cấp bữa trưa đầy đủ dinh dưỡng</li>
+            <li>Báo cáo hình ảnh mỗi tháng</li>
+            <li>Hỗ trợ y tế & thuốc men cơ bản</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn" onclick="openCheckout('Gói Dinh Dưỡng')">Quyên góp ngay</button></div>
+        </div>
+
+        <div class="pkg">
+          <h3>Nuôi Em Phong Toàn Diện</h3>
+          <div class="price">1.450.000đ / năm</div>
+          <p>Chăm sóc trọn vẹn một năm học</p>
+          <ul>
+            <li>Báo cáo hình ảnh & học tập mỗi tháng</li>
+            <li>Tặng áo ấm & chăn mùa đông</li>
+            <li>Hỗ trợ học phí & sách vở</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn" onclick="openCheckout('Nuôi Em Phong Toàn Diện')">Nhận nuôi ngay</button></div>
+        </div>
+
+        <div class="pkg">
+          <h3>Gói Hỗ Trợ Nhanh</h3>
+          <div class="price">100.000đ / lần</div>
+          <p>Hỗ trợ lương thực & vật dụng khẩn cấp</p>
+          <ul>
+            <li>Gói thực phẩm cấp tốc</li>
+            <li>Vận chuyển đến khu vực cần giúp</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn" onclick="openCheckout('Gói Hỗ Trợ Nhanh')">Quyên góp ngay</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="minhbach">
+      <h2>Câu hỏi thường gặp</h2>
+      <div class="accordion">
+        <div class="acc-item">
+          <div class="acc-q"><div><strong>Dự án Nuôi Em Phong hoạt động như thế nào?</strong></div><div class="toggle">+</div></div>
+          <div class="acc-a">Dự án là cầu nối giữa các Mạnh Thường Quân và trẻ em nghèo tại vùng cao, vùng lũ. Mỗi em nhỏ sẽ được một hoặc nhiều người nhận nuôi hỗ trợ chi phí ăn trưa tại trường, giúp các em có động lực đi học đều đặn.</div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-q"><div><strong>Làm sao tôi biết tiền của mình được sử dụng đúng mục đích?</strong></div><div class="toggle">+</div></div>
+          <div class="acc-a">Chúng tôi cam kết minh bạch tài chính 100%. Mọi khoản đóng góp và chi tiêu đều được sao kê và công khai trên website.</div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-q"><div><strong>Tôi có thể đến thăm em nhỏ mình nhận nuôi không?</strong></div><div class="toggle">+</div></div>
+          <div class="acc-a">Hoàn toàn được! Chúng tôi tổ chức các chuyến đi 'Thăm Em' định kỳ hàng quý để các nhà hảo tâm có thể trực tiếp gặp gỡ, trao quà và động viên các em cùng gia đình.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Nuôi Em Phong © 2024 Nuôi Em Phong. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Assistant bubble (static demo) -->
+  <div class="assistant" id="assistant">
+    <div class="head"><div>Trợ Lý Nuôi Em Phong</div><div style="font-size:12px;opacity:0.9">Xin chào!</div></div>
+    <div class="body">
+      <div style="margin-bottom:8px;color:var(--muted)">Tôi là trợ lý ảo. Bạn muốn biết thêm thông tin gì?</div>
+      <div class="actions"><button class="btn" onclick="openChat()">Hỏi ngay</button><button class="btn ghost" onclick="closeAssistant()">Đóng</button></div>
+    </div>
+  </div>
+
+  <script>
+    // Simple interactivity: accordion
+    document.querySelectorAll('.acc-q').forEach(q=>{
+      q.addEventListener('click', ()=>{
+        const a = q.nextElementSibling;
+        const open = a.style.display === 'block';
+        document.querySelectorAll('.acc-a').forEach(x=>x.style.display='none');
+        document.querySelectorAll('.acc-q .toggle').forEach(t=>t.textContent='+');
+        if(!open){ a.style.display='block'; q.querySelector('.toggle').textContent='-'; }
+      })
+    })
+
+    // CTA actions (demo)
+    document.getElementById('btnAdopt').addEventListener('click', ()=>{ openCheckout('Nhận nuôi') })
+    document.getElementById('btnLearn').addEventListener('click', ()=>{ document.getElementById('quy').scrollIntoView({behavior:'smooth'}) })
+
+    function openCheckout(packageName){
+      alert('Cảm ơn bạn! Bạn chọn: ' + packageName + '\n(Trong bản clone này demo, chưa kết nối cổng thanh toán)')
+    }
+
+    function openChat(){
+      alert('Xin chào! Tôi có thể giúp gì cho bạn?')
+    }
+    function closeAssistant(){ document.getElementById('assistant').style.display='none' }
+  </script>
+</body>
+</html>
